@@ -1,5 +1,10 @@
+'use client';
+
+import { useState, useRef, useEffect } from 'react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Button } from '@/components/ui/button';
 import Image from "next/image";
+import { Play, Pause } from 'lucide-react';
 
 const relaxationGuides = [
   {
@@ -47,6 +52,40 @@ const relaxationGuides = [
 ];
 
 export default function RelaxationPage() {
+  const [activeAudio, setActiveAudio] = useState<string | null>(null);
+  const audioRefs = useRef<{[key: string]: HTMLAudioElement | null}>({});
+
+  useEffect(() => {
+    // This effect ensures that when the active audio changes, the old one is paused.
+    Object.keys(audioRefs.current).forEach(key => {
+        const audio = audioRefs.current[key];
+        if (audio) {
+            if (key !== activeAudio) {
+                audio.pause();
+            }
+        }
+    });
+  }, [activeAudio]);
+
+  const togglePlay = (title: string) => {
+    const audio = audioRefs.current[title];
+    if (!audio) return;
+    
+    if (activeAudio === title) {
+      audio.pause();
+      setActiveAudio(null);
+    } else {
+      // Pause currently playing audio before starting a new one
+      if (activeAudio && audioRefs.current[activeAudio]) {
+        audioRefs.current[activeAudio]?.pause();
+      }
+      audio.play();
+      setActiveAudio(title);
+    }
+  };
+  
+  const isPlaying = (title: string) => activeAudio === title;
+
   return (
     <div className="flex flex-col gap-8">
       <header>
@@ -63,11 +102,22 @@ export default function RelaxationPage() {
                  <CardTitle className="text-xl mb-2">{guide.title}</CardTitle>
                  <CardDescription>{guide.description}</CardDescription>
             </CardContent>
-            <CardFooter className="p-4 bg-muted/50">
-              <audio controls className="w-full">
-                <source src={guide.audioSrc} type="audio/mpeg" />
-                Your browser does not support the audio element.
-              </audio>
+            <CardFooter className="p-4 mt-auto bg-muted/50">
+               <audio 
+                 ref={el => audioRefs.current[guide.title] = el}
+                 src={guide.audioSrc}
+                 onEnded={() => setActiveAudio(null)}
+                 onPause={() => {
+                   if(activeAudio === guide.title) {
+                       setActiveAudio(null);
+                   }
+                 }}
+                 preload="none"
+               />
+               <Button onClick={() => togglePlay(guide.title)} className="w-full">
+                  {isPlaying(guide.title) ? <Pause className="mr-2 h-4 w-4" /> : <Play className="mr-2 h-4 w-4" />}
+                  {isPlaying(guide.title) ? 'Stop Session' : 'Start Session'}
+               </Button>
             </CardFooter>
           </Card>
         ))}
