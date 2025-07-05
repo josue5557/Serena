@@ -1,7 +1,5 @@
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { PlayCircle } from "lucide-react";
 
 const relaxationGuides = [
   {
@@ -9,36 +7,42 @@ const relaxationGuides = [
     description: "A 10-minute guided walk through a serene, magical forest.",
     image: "https://placehold.co/600x400.png",
     hint: "serene forest",
+    audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
   },
   {
     title: "Calm Beach Waves",
     description: "Listen to the soothing sound of ocean waves for 15 minutes.",
     image: "https://placehold.co/600x400.png",
     hint: "calm beach",
+    audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
   },
   {
     title: "Mountain Sunset",
     description: "Visualize a beautiful sunset from a peaceful mountain peak.",
     image: "https://placehold.co/600x400.png",
     hint: "mountain sunset",
+    audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
   },
   {
     title: "Gentle Rain Sounds",
     description: "Relax with the calming pitter-patter of a gentle rainstorm.",
     image: "https://placehold.co/600x400.png",
     hint: "gentle rain",
+    audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
   },
     {
     title: "Cozy Fireside",
     description: "Warm up with the crackling sounds of a cozy fireplace.",
     image: "https://placehold.co/600x400.png",
     hint: "cozy fireplace",
+    audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
   },
   {
     title: "Starlight Meditation",
     description: "A guided meditation under a vast, starry night sky.",
     image: "https://placehold.co/600x400.png",
     hint: "starry sky",
+    audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3",
   },
 ];
 
@@ -59,10 +63,11 @@ export default function RelaxationPage() {
                  <CardTitle className="text-xl mb-2">{guide.title}</CardTitle>
                  <CardDescription>{guide.description}</CardDescription>
             </CardContent>
-            <CardFooter className="p-4">
-              <Button className="w-full">
-                <PlayCircle className="mr-2 h-4 w-4" /> Start Session
-              </Button>
+            <CardFooter className="p-4 bg-muted/50">
+              <audio controls className="w-full">
+                <source src={guide.audioSrc} type="audio/mpeg" />
+                Your browser does not support the audio element.
+              </audio>
             </CardFooter>
           </Card>
         ))}
