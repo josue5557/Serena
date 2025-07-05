@@ -45,7 +45,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                 <Flower2 className="w-6 h-6 text-primary" />
               </Button>
               <div className="flex flex-col">
-                <span className="font-bold text-lg tracking-tight">Mind Bloom</span>
+                <span className="font-bold text-lg tracking-tight">Serena</span>
               </div>
             </div>
           </SidebarHeader>

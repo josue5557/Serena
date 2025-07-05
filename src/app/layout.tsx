@@ -11,7 +11,7 @@ const alegreya = Alegreya({
 });
 
 export const metadata: Metadata = {
-  title: 'Mind Bloom',
+  title: 'Serena',
   description: 'Your personal guide to mental wellness.',
 };
 

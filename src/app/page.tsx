@@ -6,7 +6,7 @@ export default function DashboardPage() {
   return (
     <div className="flex flex-col gap-8">
       <header>
-        <h1 className="text-3xl font-bold text-foreground">Welcome to Mind Bloom</h1>
+        <h1 className="text-3xl font-bold text-foreground">Welcome to Serena</h1>
         <p className="text-muted-foreground mt-2">Your personal space for tranquility and growth.</p>
       </header>
 
