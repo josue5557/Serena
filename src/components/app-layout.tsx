@@ -28,7 +28,7 @@ const navItems = [
   { href: '/relaxation', label: 'Relaxation', icon: HeartPulse },
   { href: '/breathing', label: 'Breathing', icon: Wind },
   { href: '/journal', label: 'Journal', icon: BookHeart },
-  { href: '/chat', label: 'Companion', icon: Bot },
+  { href: 'https://cdn.botpress.cloud/webchat/v3.2/shareable.html?configUrl=https://files.bpcontent.cloud/2025/08/11/00/20250811004210-PLE0DMXM.json', label: 'Companion', icon: Bot },
 ];
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
