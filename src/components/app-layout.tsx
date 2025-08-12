@@ -7,7 +7,6 @@ import {
   HeartPulse,
   LayoutDashboard,
   Wind,
-  Flower2,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -21,7 +20,7 @@ import {
   SidebarProvider,
   SidebarInset,
 } from '@/components/ui/sidebar';
-import { Button } from './ui/button';
+import { Button } from './ui/button'; // Puede que ya no necesites importarlo si no lo usas aquí
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 
 const navItems = [
@@ -29,7 +28,7 @@ const navItems = [
   { href: '/relaxation', label: 'Relaxation', icon: HeartPulse },
   { href: '/breathing', label: 'Breathing', icon: Wind },
   { href: '/journal', label: 'Journal', icon: BookHeart },
-  { href: '/chat', label: 'Companion', icon: Bot },
+  { href: 'https://cdn.botpress.cloud/webchat/v3.2/shareable.html?configUrl=https://files.bpcontent.cloud/2025/08/11/00/20250811004210-PLE0DMXM.json', label: 'Companion', icon: Bot },
 ];
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
@@ -41,11 +40,15 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         <Sidebar>
           <SidebarHeader>
             <div className="flex items-center gap-2">
-              <Button variant="ghost" size="icon" className="shrink-0">
-                <Flower2 className="w-6 h-6 text-primary" />
-              </Button>
+              {/* ¡Aquí está el cambio clave! Quitamos el Button. */}
+              <img
+                src="https://storage.googleapis.com/serena-storage/Serena.PNG"
+                alt="Serena Logo"
+                className="w-32 h-32 object-contain" // Puedes ajustar el tamaño aquí
+              />
               <div className="flex flex-col">
-                <span className="font-bold text-lg tracking-tight">Serena</span>
+                {/* Puedes poner un texto aquí si quieres, o dejarlo vacío si solo es el logo */}
+                <span className="font-bold text-lg tracking-tight"></span>
               </div>
             </div>
           </SidebarHeader>
